@@ -1,14 +1,9 @@
-﻿using GenericHostBoilerplate.App.Services;
+﻿using ConsoleAppBoilerplate.ConsoleApp.Services.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace GenericHostBoilerplate.App.HostedServices
+namespace ConsoleAppBoilerplate.ConsoleApp.HostedServices
 {
     internal class HostedService : BackgroundService
     {

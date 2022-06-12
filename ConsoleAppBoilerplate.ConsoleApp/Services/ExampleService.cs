@@ -1,12 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using ConsoleAppBoilerplate.ConsoleApp.Services.Interfaces;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace GenericHostBoilerplate.App.Services.Impl
+namespace ConsoleAppBoilerplate.ConsoleApp.Services
 {
     internal class ExampleService : IExampleService
     {
@@ -22,9 +18,9 @@ namespace GenericHostBoilerplate.App.Services.Impl
         public async Task<string> DoWork(CancellationToken cancellationToken)
         {
             _logger.LogInformation("ExampleService is doing work");
-            
+
             await Task.Delay(1000, cancellationToken);
-            
+
             return _configuration["AppSettings:ExampleSetting"];
         }
     }

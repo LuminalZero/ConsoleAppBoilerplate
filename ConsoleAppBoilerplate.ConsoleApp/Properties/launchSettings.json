@@ -1,0 +1,22 @@
+{
+  "profiles": {
+    "Development": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "dvlp"
+      }
+    },
+    "Demo": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "demo"
+      }
+    },
+    "Production": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "prod"
+      }
+    }
+  }
+}
