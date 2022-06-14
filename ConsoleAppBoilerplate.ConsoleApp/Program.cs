@@ -4,6 +4,8 @@ using ConsoleAppBoilerplate.ConsoleApp.Services.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using NLog.Extensions.Logging;
 
 namespace ConsoleAppBoilerplate.ConsoleApp
 {
@@ -16,19 +18,24 @@ namespace ConsoleAppBoilerplate.ConsoleApp
 
         static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureServices((hostContext, services) =>
+                .ConfigureAppConfiguration((hostContext, config) =>
                 {
-                    services.AddLogging();
-                    services.AddTransient<IExampleService, ExampleService>();
-                    services.AddHostedService<HostedService>();
-                })
-                .ConfigureAppConfiguration((hostingContext, config) =>
-                {
-                    var env = hostingContext.HostingEnvironment;
+                    var env = hostContext.HostingEnvironment;
 
                     config.AddEnvironmentVariables();
                     config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
                     config.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: false, reloadOnChange: true);
+                })
+                .ConfigureServices((hostContext, services) =>
+                {
+                    services.AddLogging(builder =>
+                    {
+                        builder.ClearProviders();
+                        builder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
+                        builder.AddNLog(hostContext.Configuration);
+                    });
+                    services.AddTransient<IExampleService, ExampleService>();
+                    services.AddHostedService<HostedService>();
                 });
     }
 }

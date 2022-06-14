@@ -33,6 +33,7 @@ namespace ConsoleAppBoilerplate.ConsoleApp.HostedServices
 
             _logger.LogDebug($"Working dir is {_hostingEnv.ContentRootPath}");
             _logger.LogInformation($".NET environment is {_configuration["DOTNET_ENVIRONMENT"]}");
+
             var result = await _exampleService.DoWork(stoppingToken);
             _logger.LogInformation($"Example service returned {result}");
 
