@@ -41,16 +41,16 @@ namespace ConsoleAppBoilerplate.ConsoleApp.HostedServices
             _hostLifetime.StopApplication();
         }
 
-        public override Task StartAsync(CancellationToken cancellationToken)
+        public override async Task StartAsync(CancellationToken cancellationToken)
         {
             _logger.LogInformation("Starting up");
-            return base.StartAsync(cancellationToken);
+            await base.StartAsync(cancellationToken);
         }
 
-        public override Task StopAsync(CancellationToken cancellationToken)
+        public override async Task StopAsync(CancellationToken cancellationToken)
         {
             _logger.LogInformation("Stopping");
-            return base.StopAsync(cancellationToken);
+            await base.StopAsync(cancellationToken);
         }
     }
 }
