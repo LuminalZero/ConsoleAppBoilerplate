@@ -31,7 +31,7 @@ namespace ConsoleAppBoilerplate.ConsoleApp
                     services.AddLogging(builder =>
                     {
                         builder.ClearProviders();
-                        builder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
+                        builder.SetMinimumLevel(LogLevel.Trace);
                         builder.AddNLog(hostContext.Configuration);
                     });
                     services.AddTransient<IExampleService, ExampleService>();
